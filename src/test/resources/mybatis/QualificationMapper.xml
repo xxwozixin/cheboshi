@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.QualificationMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.Qualification" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cheboshi_id" property="cheboshiId" jdbcType="INTEGER" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="id_card_img_a" property="idCardImgA" jdbcType="VARCHAR" />
+    <result column="id_card_img_b" property="idCardImgB" jdbcType="VARCHAR" />
+    <result column="engineer_prove_img" property="engineerProveImg" jdbcType="VARCHAR" />
+    <result column="factory_prove_img" property="factoryProveImg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="handle_text" property="handleText" jdbcType="VARCHAR" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+    <result column="handle_dtm" property="handleDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cheboshi_id, id_card, id_card_img_a, id_card_img_b, engineer_prove_img, factory_prove_img, 
+    status, handle_text, create_dtm, handle_dtm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qualification
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_qualification
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.Qualification" >
+    insert into t_qualification (id, cheboshi_id, id_card, 
+      id_card_img_a, id_card_img_b, engineer_prove_img, 
+      factory_prove_img, status, handle_text, 
+      create_dtm, handle_dtm)
+    values (#{id,jdbcType=INTEGER}, #{cheboshiId,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, 
+      #{idCardImgA,jdbcType=VARCHAR}, #{idCardImgB,jdbcType=VARCHAR}, #{engineerProveImg,jdbcType=VARCHAR}, 
+      #{factoryProveImg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{handleText,jdbcType=VARCHAR}, 
+      #{createDtm,jdbcType=TIMESTAMP}, #{handleDtm,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.Qualification" >
+    insert into t_qualification
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cheboshiId != null" >
+        cheboshi_id,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="idCardImgA != null" >
+        id_card_img_a,
+      </if>
+      <if test="idCardImgB != null" >
+        id_card_img_b,
+      </if>
+      <if test="engineerProveImg != null" >
+        engineer_prove_img,
+      </if>
+      <if test="factoryProveImg != null" >
+        factory_prove_img,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="handleText != null" >
+        handle_text,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+      <if test="handleDtm != null" >
+        handle_dtm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cheboshiId != null" >
+        #{cheboshiId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImgA != null" >
+        #{idCardImgA,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImgB != null" >
+        #{idCardImgB,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerProveImg != null" >
+        #{engineerProveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryProveImg != null" >
+        #{factoryProveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleText != null" >
+        #{handleText,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleDtm != null" >
+        #{handleDtm,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.Qualification" >
+    update t_qualification
+    <set >
+      <if test="cheboshiId != null" >
+        cheboshi_id = #{cheboshiId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImgA != null" >
+        id_card_img_a = #{idCardImgA,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImgB != null" >
+        id_card_img_b = #{idCardImgB,jdbcType=VARCHAR},
+      </if>
+      <if test="engineerProveImg != null" >
+        engineer_prove_img = #{engineerProveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryProveImg != null" >
+        factory_prove_img = #{factoryProveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleText != null" >
+        handle_text = #{handleText,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleDtm != null" >
+        handle_dtm = #{handleDtm,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.Qualification" >
+    update t_qualification
+    set cheboshi_id = #{cheboshiId,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      id_card_img_a = #{idCardImgA,jdbcType=VARCHAR},
+      id_card_img_b = #{idCardImgB,jdbcType=VARCHAR},
+      engineer_prove_img = #{engineerProveImg,jdbcType=VARCHAR},
+      factory_prove_img = #{factoryProveImg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      handle_text = #{handleText,jdbcType=VARCHAR},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      handle_dtm = #{handleDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

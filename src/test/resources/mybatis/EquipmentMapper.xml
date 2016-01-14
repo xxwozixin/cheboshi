@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.Equipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="carinfo_id" property="carinfoId" jdbcType="INTEGER" />
+    <result column="equipment" property="equipment" jdbcType="VARCHAR" />
+    <result column="able" property="able" jdbcType="INTEGER" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, carinfo_id, equipment, able, create_dtm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_equipment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from j_equipment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.Equipment" >
+    insert into j_equipment (id, user_id, carinfo_id, 
+      equipment, able, create_dtm
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{carinfoId,jdbcType=INTEGER}, 
+      #{equipment,jdbcType=VARCHAR}, #{able,jdbcType=INTEGER}, #{createDtm,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.Equipment" >
+    insert into j_equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="carinfoId != null" >
+        carinfo_id,
+      </if>
+      <if test="equipment != null" >
+        equipment,
+      </if>
+      <if test="able != null" >
+        able,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="carinfoId != null" >
+        #{carinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="equipment != null" >
+        #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="able != null" >
+        #{able,jdbcType=INTEGER},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.Equipment" >
+    update j_equipment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="carinfoId != null" >
+        carinfo_id = #{carinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="equipment != null" >
+        equipment = #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="able != null" >
+        able = #{able,jdbcType=INTEGER},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.Equipment" >
+    update j_equipment
+    set user_id = #{userId,jdbcType=INTEGER},
+      carinfo_id = #{carinfoId,jdbcType=INTEGER},
+      equipment = #{equipment,jdbcType=VARCHAR},
+      able = #{able,jdbcType=INTEGER},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.BankMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.Bank" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="wallet_id" property="walletId" jdbcType="INTEGER" />
+    <result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+    <result column="bank_num" property="bankNum" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, wallet_id, bank_address, bank_num, type, create_dtm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from j_bank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.Bank" >
+    insert into j_bank (id, wallet_id, bank_address, 
+      bank_num, type, create_dtm
+      )
+    values (#{id,jdbcType=INTEGER}, #{walletId,jdbcType=INTEGER}, #{bankAddress,jdbcType=VARCHAR}, 
+      #{bankNum,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createDtm,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.Bank" >
+    insert into j_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="walletId != null" >
+        wallet_id,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="bankNum != null" >
+        bank_num,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="walletId != null" >
+        #{walletId,jdbcType=INTEGER},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.Bank" >
+    update j_bank
+    <set >
+      <if test="walletId != null" >
+        wallet_id = #{walletId,jdbcType=INTEGER},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        bank_num = #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.Bank" >
+    update j_bank
+    set wallet_id = #{walletId,jdbcType=INTEGER},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      bank_num = #{bankNum,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

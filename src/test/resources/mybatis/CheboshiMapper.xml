@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.CheboshiMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.Cheboshi" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="weixin_num" property="weixinNum" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="technology_level" property="technologyLevel" jdbcType="INTEGER" />
+    <result column="technology_remark" property="technologyRemark" jdbcType="VARCHAR" />
+    <result column="experience_year" property="experienceYear" jdbcType="INTEGER" />
+    <result column="recommend_code" property="recommendCode" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+    <result column="is_pass" property="isPass" jdbcType="INTEGER" />
+    <result column="pass_dtm" property="passDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hy.cbs.domain.Cheboshi" extends="BaseResultMap" >
+    <result column="self_introduction" property="selfIntroduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, nick_name, real_name, sex, img_url, phone, weixin_num, id_card, 
+    technology_level, technology_remark, experience_year, recommend_code, token, create_dtm, 
+    is_pass, pass_dtm
+  </sql>
+  <sql id="Blob_Column_List" >
+    self_introduction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_cheboshi
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_cheboshi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.Cheboshi" >
+    insert into t_cheboshi (id, username, password, 
+      nick_name, real_name, sex, 
+      img_url, phone, weixin_num, 
+      id_card, technology_level, technology_remark, 
+      experience_year, recommend_code, token, 
+      create_dtm, is_pass, pass_dtm, 
+      self_introduction)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{weixinNum,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{technologyLevel,jdbcType=INTEGER}, #{technologyRemark,jdbcType=VARCHAR}, 
+      #{experienceYear,jdbcType=INTEGER}, #{recommendCode,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{createDtm,jdbcType=TIMESTAMP}, #{isPass,jdbcType=INTEGER}, #{passDtm,jdbcType=TIMESTAMP}, 
+      #{selfIntroduction,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.Cheboshi" >
+    insert into t_cheboshi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="technologyLevel != null" >
+        technology_level,
+      </if>
+      <if test="technologyRemark != null" >
+        technology_remark,
+      </if>
+      <if test="experienceYear != null" >
+        experience_year,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
+      <if test="passDtm != null" >
+        pass_dtm,
+      </if>
+      <if test="selfIntroduction != null" >
+        self_introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null" >
+        #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyLevel != null" >
+        #{technologyLevel,jdbcType=INTEGER},
+      </if>
+      <if test="technologyRemark != null" >
+        #{technologyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceYear != null" >
+        #{experienceYear,jdbcType=INTEGER},
+      </if>
+      <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=INTEGER},
+      </if>
+      <if test="passDtm != null" >
+        #{passDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfIntroduction != null" >
+        #{selfIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.Cheboshi" >
+    update t_cheboshi
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyLevel != null" >
+        technology_level = #{technologyLevel,jdbcType=INTEGER},
+      </if>
+      <if test="technologyRemark != null" >
+        technology_remark = #{technologyRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="experienceYear != null" >
+        experience_year = #{experienceYear,jdbcType=INTEGER},
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPass != null" >
+        is_pass = #{isPass,jdbcType=INTEGER},
+      </if>
+      <if test="passDtm != null" >
+        pass_dtm = #{passDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="selfIntroduction != null" >
+        self_introduction = #{selfIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hy.cbs.domain.Cheboshi" >
+    update t_cheboshi
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      technology_level = #{technologyLevel,jdbcType=INTEGER},
+      technology_remark = #{technologyRemark,jdbcType=VARCHAR},
+      experience_year = #{experienceYear,jdbcType=INTEGER},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      is_pass = #{isPass,jdbcType=INTEGER},
+      pass_dtm = #{passDtm,jdbcType=TIMESTAMP},
+      self_introduction = #{selfIntroduction,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.Cheboshi" >
+    update t_cheboshi
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      technology_level = #{technologyLevel,jdbcType=INTEGER},
+      technology_remark = #{technologyRemark,jdbcType=VARCHAR},
+      experience_year = #{experienceYear,jdbcType=INTEGER},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      is_pass = #{isPass,jdbcType=INTEGER},
+      pass_dtm = #{passDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

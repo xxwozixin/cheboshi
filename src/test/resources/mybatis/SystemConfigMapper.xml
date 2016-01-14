@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.SystemConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.SystemConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="_key" property="key" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+    <result column="update_dtm" property="updateDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, _key, value, create_dtm, update_dtm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_system_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_system_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.SystemConfig" >
+    insert into t_system_config (id, _key, value, 
+      create_dtm, update_dtm)
+    values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{createDtm,jdbcType=TIMESTAMP}, #{updateDtm,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.SystemConfig" >
+    insert into t_system_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="key != null" >
+        _key,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+      <if test="updateDtm != null" >
+        update_dtm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDtm != null" >
+        #{updateDtm,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.SystemConfig" >
+    update t_system_config
+    <set >
+      <if test="key != null" >
+        _key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDtm != null" >
+        update_dtm = #{updateDtm,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.SystemConfig" >
+    update t_system_config
+    set _key = #{key,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      update_dtm = #{updateDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

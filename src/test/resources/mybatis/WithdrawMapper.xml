@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.cbs.dao.WithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.cbs.domain.Withdraw" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="join_id" property="joinId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="handle_text" property="handleText" jdbcType="VARCHAR" />
+    <result column="create_dtm" property="createDtm" jdbcType="TIMESTAMP" />
+    <result column="handle_dtm" property="handleDtm" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, join_id, money, status, handle_text, create_dtm, handle_dtm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hy.cbs.domain.Withdraw" >
+    insert into t_withdraw (id, type, join_id, 
+      money, status, handle_text, 
+      create_dtm, handle_dtm)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{joinId,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{handleText,jdbcType=VARCHAR}, 
+      #{createDtm,jdbcType=TIMESTAMP}, #{handleDtm,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.cbs.domain.Withdraw" >
+    insert into t_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="joinId != null" >
+        join_id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="handleText != null" >
+        handle_text,
+      </if>
+      <if test="createDtm != null" >
+        create_dtm,
+      </if>
+      <if test="handleDtm != null" >
+        handle_dtm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="joinId != null" >
+        #{joinId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleText != null" >
+        #{handleText,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleDtm != null" >
+        #{handleDtm,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.cbs.domain.Withdraw" >
+    update t_withdraw
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="joinId != null" >
+        join_id = #{joinId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleText != null" >
+        handle_text = #{handleText,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtm != null" >
+        create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleDtm != null" >
+        handle_dtm = #{handleDtm,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.cbs.domain.Withdraw" >
+    update t_withdraw
+    set type = #{type,jdbcType=INTEGER},
+      join_id = #{joinId,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      handle_text = #{handleText,jdbcType=VARCHAR},
+      create_dtm = #{createDtm,jdbcType=TIMESTAMP},
+      handle_dtm = #{handleDtm,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
